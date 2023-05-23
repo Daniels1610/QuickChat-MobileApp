@@ -10,4 +10,7 @@
     <string name="lockCD">Lock Icon</string>
     <string name="quickChatCD">QuickChat Logo</string>
     <string name="user1">User 1</string>
+    <string name="email">Email</string>
+    <string name="createAccount">CREATE ACCOUNT</string>
+    <string name="clickLogin">Click to Login</string>
 </resources>
