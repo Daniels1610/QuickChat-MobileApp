@@ -4,7 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Bundle;
+import android.text.Html;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -36,6 +38,7 @@ public class SignUpActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         mAuth = FirebaseAuth.getInstance();
+        binding.loginNow.setPaintFlags(binding.loginNow.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         progressBar = binding.progressBarCharge;
 
         binding.loginNow.setOnClickListener(new View.OnClickListener(){
