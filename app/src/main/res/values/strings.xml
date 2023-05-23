@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">QuickChat</string>
+    <string name="typeMessage">Type a Message</string>
+    <string name="sendCD">Send Button</string>
+    <string name="Username">Username</string>
+    <string name="Password">Password</string>
+    <string name="login">LOGIN</string>
+    <string name="signup">SIGN UP</string>
+    <string name="personCD">Person Icon</string>
+    <string name="lockCD">Lock Icon</string>
+    <string name="quickChatCD">QuickChat Logo</string>
+    <string name="user1">User 1</string>
+</resources>
