@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
 //        readUserTest("JTR");
 //        insertUserFirebase();
 //        readAllUsersFirebase();
-        addDataFirebase();
+//        addDataFirebase();
 
 
     }
@@ -62,9 +62,9 @@ public class MainActivity extends AppCompatActivity {
         mDBOperations.insertUserFirestore(new User("Truffle", "truffle@email.com", "truffle432"));
     }
 
-    public void readAllUsersFirebase() {
-        mDBOperations.readFirestore();
-    }
+//    public void readAllUsersFirebase() {
+//        mDBOperations.readFirestore();
+//    }
 
     public void addDataFirebase(){
         mDBOperations.addDataToFirestore(new User("cerati", "cerati@gmail.com", "cajanegra23"));

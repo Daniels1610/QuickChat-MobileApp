@@ -17,6 +17,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -106,9 +107,8 @@ public class DatabaseOperations {
         data.put("username", user.getUsername());
         data.put("email", user.getEmail());
         data.put("password", user.getPassword());
-
         mDBFirestore.collection("users")
-                .add(data)
+                .document(user.getUsername()).set(data)
                 .addOnSuccessListener(documentReference -> {
                     Log.d(TAG, "Data Inserted");
                 })
@@ -136,21 +136,26 @@ public class DatabaseOperations {
 
     }
 
+    public Object[] getUserDocument(String username, FirestoreCallback callback) {
+        DocumentReference userDoc = mDBFirestore.collection("users").document(username);
+        final Object[] userEmail = new Object[1];
 
-    public void readFirestore(){
-        mDBFirestore.collection("users")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                            if(task.isSuccessful()){
-                                for(QueryDocumentSnapshot document : task.getResult()) {
-                                    Log.d(TAG, document.getId() + " => " + document.getData());
-                                }
-                            } else {
-                                Log.w(TAG, "Error getting documents.", task.getException());
-                            }
-                        }
-                });
+        userDoc.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                DocumentSnapshot document = task.getResult();
+                if (document.exists()) {
+                    userEmail[0] = document.get("email");
+                    Log.d(TAG, "User Document: " + document.get("email"));
+                    callback.onCallback(userEmail);
+                } else {
+                    Log.d(TAG, "No such document");
+                    callback.onCallback(null);
+                }
+            } else {
+                Log.d(TAG, "get failed with ", task.getException());
+                callback.onCallback(null);
+            }
+        });
+        return userEmail;
     }
 }
