@@ -25,6 +25,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/userET"
             android:hint="@string/Username"
+            android:maxLines="1"
+            android:inputType="text"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -57,7 +59,9 @@
             android:id="@+id/passwordET"
             android:hint="@string/Password"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:maxLines="1"
+            android:inputType="textPassword"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
