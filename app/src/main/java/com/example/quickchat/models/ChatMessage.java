@@ -1,55 +1,50 @@
 package com.example.quickchat.models;
 
+import com.google.type.DateTime;
+
+import java.sql.Time;
 import java.text.SimpleDateFormat;
+import java.time.ZonedDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.Locale;
 
 public class ChatMessage {
-    public String senderID;
+    private String messageText;
+    private String messageUser;
+    private String messageTime;
 
-    public String receiverID;
-    public String message;
-    public String dateTime;
-
-    public Date dateObject;
-
-    public String getSenderID() {
-        return senderID;
+    public ChatMessage(String messageText, String messageUser){
+        this.messageText = messageText;
+        this.messageUser = messageUser;
+        messageTime = DateTime.getDefaultInstance().toString();
     }
 
-    public void setSenderID(String senderID) {
-        this.senderID = senderID;
+    public ChatMessage(){
+
     }
 
-//    public String getReceiverID() {
-//        return receiverID;
-//    }
-//
-//    public void setReceiverID(String receiverID) {
-//        this.receiverID = receiverID;
-//    }
-
-    public String getMessage() {
-        return message;
+    public String getMessageText() {
+        return messageText;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setMessageText(String messageText) {
+        this.messageText = messageText;
     }
 
-    public String getDateTime() {
-        return dateTime;
+    public String getMessageUser() {
+        return messageUser;
     }
 
-    public void setDateTime(String dateTime) {
-        this.dateTime = dateTime;
+    public void setMessageUser(String messageUser) {
+        this.messageUser = messageUser;
     }
 
-    public Date getDateObject() {
-        return dateObject;
+    public String getMessageTime() {
+        return messageTime;
     }
 
-    public void setDateObject(Date dateObject) {
-        this.dateObject = dateObject;
+    public void setMessageTime(String messageTime) {
+        this.messageTime = messageTime;
     }
 }
