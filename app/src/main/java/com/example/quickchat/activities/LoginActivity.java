@@ -17,7 +17,9 @@ import com.example.quickchat.database.DatabaseOperations;
 import com.example.quickchat.database.FirestoreCallback;
 import com.example.quickchat.databinding.ActivityLoginBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.recaptcha.Recaptcha;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -78,10 +80,10 @@ public class LoginActivity extends AppCompatActivity {
                         if (result != null && result.length > 0) {
                             String email = (String) result[0];
                             Log.d(TAG, "Email: " + email);
-                            Toast.makeText(LoginActivity.this, email, Toast.LENGTH_SHORT).show();
                             authenticationEmailPassword(email, password);
                         } else {
-                            Log.d(TAG, "User email not found");
+                            progressBar.setVisibility(View.GONE);
+                            Toast.makeText(LoginActivity.this, "Invalid User", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -107,16 +109,15 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         progressBar.setVisibility(View.GONE);
                         if (task.isSuccessful()) {
-                            Toast.makeText(LoginActivity.this, "Login Successfull", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(LoginActivity.this, ChatActivity.class);
                             startActivity(intent);
                             finish();
 
                         } else {
-                            Toast.makeText(LoginActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-
+                            Toast.makeText(LoginActivity.this, "Authentication Failed", Toast.LENGTH_SHORT).show();
                         }
+
                     }
                 });
     }
