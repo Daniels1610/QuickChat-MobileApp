@@ -13,4 +13,5 @@
     <string name="email">Email</string>
     <string name="createAccount">CREATE ACCOUNT</string>
     <string name="clickLogin">Click to Login</string>
+    <string name="groupChat">Group Chat</string>
 </resources>
