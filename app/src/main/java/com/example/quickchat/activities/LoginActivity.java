@@ -61,7 +61,6 @@ public class LoginActivity extends AppCompatActivity {
                 String username, password;
                 username = String.valueOf(binding.userET.getText());
                 password = String.valueOf(binding.passwordET.getText());
-
                 if (TextUtils.isEmpty(username)) {
                     Toast.makeText(LoginActivity.this, "Enter Username", Toast.LENGTH_SHORT).show();
                     return;
@@ -111,6 +110,7 @@ public class LoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(LoginActivity.this, ChatActivity.class);
+                            intent.putExtra("USERNAME", String.valueOf(binding.userET.getText()));
                             startActivity(intent);
                             finish();
 

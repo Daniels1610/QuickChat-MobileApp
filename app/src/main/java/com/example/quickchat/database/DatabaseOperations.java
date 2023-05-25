@@ -30,7 +30,8 @@ public class DatabaseOperations {
 
     public void writeMessage(String messageText, String messageUser) {
         ChatMessage message = new ChatMessage(messageText, messageUser);
-        mDBInstance.getReference("ChatGroup")
+
+        mDBInstance.getReference().child("ChatGroup")
                 .push()
                 .setValue(message);
     }

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -43,6 +44,7 @@ public class ChatActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         username = intent.getStringExtra("USERNAME");
+        Log.d(TAG, username);
 
         adapter = new FirebaseListAdapter<ChatMessage>(ChatActivity.this, ChatMessage.class, R.layout.message, mDBHelper.getDatabaseInstance().getReference().child("ChatGroup")) {
             @Override
@@ -51,8 +53,8 @@ public class ChatActivity extends AppCompatActivity {
                 TextView messageUser = (TextView) v.findViewById(R.id.message_user);
                 TextView messageTime = (TextView) v.findViewById(R.id.message_time);
 
-                messageText.setText(model.getMessageText());
                 messageUser.setText(model.getMessageUser());
+                messageText.setText(model.getMessageText());
                 messageTime.setText(model.getMessageTime());
             }
         };
